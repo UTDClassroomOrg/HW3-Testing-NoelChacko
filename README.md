@@ -44,10 +44,71 @@ The 'average' function of the first 'k' elements of the array 'list'. If the val
 
 ## e)Implementation
 
-[Link to Average.java](https://www.google.com/)
-<BR>[Link to AverageTest.java](https://www.google.com/)
+[Link to Average.java](https://github.com/UTDClassroomOrg/HW3-Testing-NoelChacko/blob/main/Average.java)
+<BR>[Link to AverageTest.java](https://github.com/UTDClassroomOrg/HW3-Testing-NoelChacko/blob/main/AverageTest.java)
 
 ## f)Compile and run the test cases
 
+### Intital Results
+The Original Code was able to run the test case with no issues 
+- Errors: 0
+- Failures: 0
+
+
+### Fault Injection
+In order to complete section F and accurately examine the test cases, the following fault: i = 0 to i = 1 was add. The new code is given below.
+
+```java
+
+public class Average {
+    public int average(int k, int[] list) {
+        int average = 0;
+        int n = Math.min(k, list.length);
+        if (n > 0) {
+            for (int i = 1; i < n; i++) {
+                average += list[i];
+            }
+            average = average / n;
+        }
+        return average;
+    }
+}
+
+```
+
+| Test Case |	Pass/Fail |
+| -- | -- |
+| TC1 | Pass |
+| TC2 | Pass |
+| TC3 | Fail |
+| TC4 | Pass |
+| TC5 | Pass |
+
+#### Analysis
+By editing our function the fault results in the function skipping the first element of List, which results in incorrect averages. This resulted in test case 3 failing because it was expecting the result 2 but actually got 1.
+
+#### Fix
+By swapping i = 1 for i = 0 the function will iterate over the entire array instead of skipping the first test case. 
+
+```java
+
+public class Average {
+    public int average(int k, int[] list) {
+        int average = 0;
+        int n = Math.min(k, list.length);
+        if (n > 0) {
+            for (int i = 0; i < n; i++) { //swapped i = 1 to i = 0
+                average += list[i];
+            }
+            average = average / n;
+        }
+        return average;
+    }
+}
+
+```
+
 ## g)Code Coverage
+My test case were able to recieve 100% coverage: <img width="1180" alt="Screenshot 2024-12-09 at 11 50 08 PM" src="https://github.com/user-attachments/assets/c6edb6c5-1fad-45bf-8a12-2c8f88ac0b93">
+
 
